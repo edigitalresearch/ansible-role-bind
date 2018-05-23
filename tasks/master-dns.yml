@@ -1,0 +1,26 @@
+- name: DNS | Include Vars
+  include_vars:
+    dir: vars
+
+- name: DNS | Preflight Tasks
+  include_tasks: preflight.yml
+
+- name: DNS | Create zones directory
+  file:
+    path: /etc/named/zones
+    owner: root
+    group: named
+    mode: 0755
+    state: directory
+
+- name: DNS | Create Zones
+  template:
+    src: db.domain.j2
+    dest: "/etc/named/zones/db.{{item.key}}"
+    owner: root
+    group: named
+    mode: 0755
+  with_dict: "{{bind.zones}}"
+
+- name: DNS | Postflight Tasks
+  include_tasks: postflight.yml

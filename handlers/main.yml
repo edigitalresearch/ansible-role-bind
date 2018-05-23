@@ -1,0 +1,13 @@
+---
+  - name: start-bind
+    service:
+      name: named
+      state: started
+  - name: restart-bind
+    service:
+      name: named
+      state: restarted
+  - name: reload-bind
+    service:
+      name: named
+      state: reloaded

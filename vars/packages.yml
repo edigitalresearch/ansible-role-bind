@@ -1,0 +1,4 @@
+---
+  packages:
+    - bind
+    - bind-utils

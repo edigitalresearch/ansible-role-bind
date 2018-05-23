@@ -1,0 +1,18 @@
+@       IN      SOA     {{ bind.nameservers[0].name }} {{ bind.admin_email }}. (
+                              {{ ansible_date_time.epoch }}         ; Serial
+             604800     ; Refresh
+              86400     ; Retry
+            2419200     ; Expire
+             604800 )   ; Negative Cache TTL
+;
+; name servers - NS records
+{% for ns in bind.nameservers %}
+      IN      NS      {{ ns.name }}
+{% endfor %}
+
+; Host Records
+{% for type, records in item.value.records.iteritems() %}
+{% for record, data in records.iteritems() %}
+{{ record }}          IN      {{ type | upper() }}       {{ data }}
+{% endfor %}
+{% endfor %}

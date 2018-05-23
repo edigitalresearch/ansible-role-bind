@@ -1,0 +1,7 @@
+- name: DNS | Primary Tasks
+  include_tasks: master-dns.yml
+  when: "'bind-master' in group_names | default([])"
+
+- name: DNS | Secondary Tasks
+  include_tasks: slave-dns.yml
+  when: "'bind-slave' in group_names | default([])"

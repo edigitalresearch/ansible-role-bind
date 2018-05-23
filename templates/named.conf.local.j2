@@ -1,0 +1,12 @@
+{% for zone in bind.zones %}
+zone "{{zone}}" {
+  {% if inventory_hostname in groups['bind-master'] %}
+  type master;
+  file "/etc/named/zones/db.{{zone}}";
+  {% elif inventory_hostname in groups['bind-slave'] %}
+  type slave;
+  file "slaves/db.{{zone}}";
+  masters { {% for host in groups['bind-master'] %}{% for ipv4_addr in hostvars[host]['ansible_all_ipv4_addresses'] %}{{ ipv4_addr }};{% endfor %}{% endfor %}};
+  {% endif %}
+};
+{% endfor %}

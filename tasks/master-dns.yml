@@ -16,11 +16,11 @@
 - name: DNS | Create Zones
   template:
     src: db.domain.j2
-    dest: "/etc/named/zones/db.{{item.key}}"
+    dest: "/etc/named/zones/db.{{ item.key }}"
     owner: root
     group: named
     mode: 0755
-  with_dict: "{{bind.zones}}"
+  with_dict: "{{ bind.zones }}"
 
 - name: DNS | Postflight Tasks
   include_tasks: postflight.yml

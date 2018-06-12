@@ -1,6 +1,6 @@
 - name: DNS | Install DNS Packages
   yum:
-    name: "{{item}}"
+    name: "{{ item }}"
   with_items: "{{ packages }}"
 
 - name: DNS | Configure named.conf

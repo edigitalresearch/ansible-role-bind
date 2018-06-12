@@ -31,6 +31,8 @@ Here is an example variables file
 ```
 ---
   bind:
+    dnssec: 'yes'
+    recursion: 'no'
     admin_email: vagrant.edig.co.uk # Admin email for all zones
     nameservers: # A list of nameserver name -> ip pairs
       - name: ns1.example.co.uk.
@@ -49,10 +51,16 @@ Here is an example variables file
               13: web.example.co.uk.
               14: ns1.example.co.uk.
               15: ns2.example.co.uk.
-
+    forwarders:
+      example:
+        targets:
+          - ip: 127.0.0.1
+            port: 8600
 ```
 
 The role will create the forward zone `example.co.uk` with one A record `web.example.co.uk` pointing to 172.16.10.13 in this case. It will also create the reverse zones so both servers can answer reverse lookups.
+
+DNS forwarders can be created to forward queries to other DNS services and discovery tools
 
 ## Handlers
 

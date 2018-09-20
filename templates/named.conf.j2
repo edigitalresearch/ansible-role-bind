@@ -30,7 +30,7 @@ options {
 
 	};
 
-	allow-query     { localnets; };
+	allow-query     { {{ bind.allowquery }}; };
 
 	/*
 	 - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
@@ -42,9 +42,9 @@ options {
 	   attacks. Implementing BCP38 within your network would greatly
 	   reduce such attack surface
 	*/
-	recursion no;
+	recursion {{ bind.recursion }};
 
-	dnssec-enable yes;
+	dnssec-enable {{ bind.dnssec }};
 	dnssec-validation yes;
 
 	/* Path to ISC DLV key */

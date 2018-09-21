@@ -10,3 +10,13 @@ zone "{{zone}}" {
   {% endif %}
 };
 {% endfor %}
+
+{% if bind.forwarders is defined %}
+{% for key, value in bind.forwarders.items() %}
+zone "{{ key }}" IN {
+  type forward;
+  forward only;
+  forwarders { {% for item in value.targets %}{{ item.ip }} port {{ item.port }}; {% endfor %}};
+};
+{% endfor %}
+{% endif %}

@@ -42,10 +42,10 @@ options {
 	   attacks. Implementing BCP38 within your network would greatly
 	   reduce such attack surface
 	*/
-	recursion {{ bind.recursion }};
+	recursion {{ bind.recursion | default('no') }};
 
-	dnssec-enable {{ bind.dnssec }};
-	dnssec-validation yes;
+	dnssec-enable {{ bind.dnssec | default('yes') }};
+	dnssec-validation {{ bind.dnssec | default('yes') }};
 
 	/* Path to ISC DLV key */
 	bindkeys-file "/etc/named.iscdlv.key";

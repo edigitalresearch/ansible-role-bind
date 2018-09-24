@@ -30,7 +30,7 @@ options {
 
 	};
 
-	allow-query     { {{ bind.allowquery }}; };
+	allow-query     { {{ bind.allowquery | default("any") }}; };
 
 	/*
 	 - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
@@ -43,6 +43,15 @@ options {
 	   reduce such attack surface
 	*/
 	recursion {{ bind.recursion | default('no') }};
+
+	{% if bind.root_forwarders %}
+	forwarders {
+		{% for address in bind.root_forwarders %}
+			{{ address }};
+		{% endfor %}
+	};
+	forward only;
+	{% endif %}
 
 	dnssec-enable {{ bind.dnssec | default('yes') }};
 	dnssec-validation {{ bind.dnssec | default('yes') }};

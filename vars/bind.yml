@@ -1,5 +1,5 @@
 ---
   bind:
-    allowquery: "localnets"
+    allowquery: "any"
     recursion: "yes"
     dnssec: "yes"

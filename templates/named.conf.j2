@@ -30,7 +30,7 @@ options {
 
 	};
 
-	allow-query     { {{ bind.allowquery }}; };
+	allow-query     { {{ bind.allowquery | default("any") }}; };
 
 	/*
 	 - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.

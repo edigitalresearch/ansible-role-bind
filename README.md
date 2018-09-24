@@ -60,7 +60,10 @@ Here is an example variables file
 
 The role will create the forward zone `example.co.uk` with one A record `web.example.co.uk` pointing to 172.16.10.13 in this case. It will also create the reverse zones so both servers can answer reverse lookups.
 
-DNS forwarders can be created to forward queries to other DNS services and discovery tools
+DNS forwarders can be created to forward queries to other DNS services and discovery tools. There are two types of forwarders
+
+* `forwarders` - Forwards a specific DNS name to a NS server
+* `root_forwarders` - Forwards all queries to a given NS
 
 ## Handlers
 

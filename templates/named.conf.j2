@@ -44,6 +44,15 @@ options {
 	*/
 	recursion {{ bind.recursion | default('no') }};
 
+	{% if bind.root_forwarders %}
+	forwarders {
+		{% for address in bind.root_forwarders %}
+			{{ address }};
+		{% endfor %}
+	}
+	forward only;
+	{% endif %}
+
 	dnssec-enable {{ bind.dnssec | default('yes') }};
 	dnssec-validation {{ bind.dnssec | default('yes') }};
 

@@ -49,7 +49,7 @@ options {
 		{% for address in bind.root_forwarders %}
 			{{ address }};
 		{% endfor %}
-	}
+	};
 	forward only;
 	{% endif %}
 

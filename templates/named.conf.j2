@@ -43,7 +43,7 @@ options {
 	   reduce such attack surface
 	*/
 	recursion {{ bind.recursion | default('no') }};
-	allow-recursion { {{ bind.allowrecursion | default("any")}}; }
+	allow-recursion { {{ bind.allowrecursion | default("any")}}; };
 	{% if bind.root_forwarders %}
 	forwarders {
 		{% for address in bind.root_forwarders %}

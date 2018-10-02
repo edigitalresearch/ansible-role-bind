@@ -1,5 +1,6 @@
 ---
   bind:
     allowquery: "any"
+    allowrecursion: "any"
     recursion: "yes"
     dnssec: "yes"

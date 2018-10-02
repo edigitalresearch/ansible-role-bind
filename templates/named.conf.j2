@@ -50,7 +50,7 @@ options {
 			{{ address }};
 		{% endfor %}
 	};
-	forward only;
+	forward first; # Needed for recursion and wildcarding
 	{% endif %}
 
 	dnssec-enable {{ bind.dnssec | default('yes') }};

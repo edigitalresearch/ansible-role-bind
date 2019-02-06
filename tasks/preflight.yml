@@ -1,7 +1,7 @@
 - name: DNS | Install DNS Packages
   yum:
-    name: "{{ item }}"
-  with_items: "{{ packages }}"
+    name: "{{ packages }}"
+    state: present
 
 - name: DNS | Configure named.conf
   template:
